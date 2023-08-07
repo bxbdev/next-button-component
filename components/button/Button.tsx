@@ -57,7 +57,6 @@ export type ButtonProps = {
 
 export const StyledButton = styled.button<ButtonProps>`
     display: flex;
-    align-items: center;
     gap: 4px;
     font-size: ${ ({ theme }: ButtonProps) => theme?.fontSize || "14px" };
     color: ${ ({ variant, color, theme }: ButtonProps) => {
