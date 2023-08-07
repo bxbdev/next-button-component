@@ -1,6 +1,6 @@
 import type { NextPage } from "next"
 import Button from "@/components/button"
-import { MdShoppingCartCheckout, MdOutlineCalendarMonth } from "react-icons/md";
+import { MdShoppingCartCheckout, MdOutlineCalendarMonth, MdDeleteForever } from "react-icons/md";
 import Title from "@/components/title";
 
 const Home: NextPage = () => {
@@ -8,7 +8,7 @@ const Home: NextPage = () => {
   return (
     <main className="grid gap-20 items-top px-24 py-10">
       <section className="flex flex-col items-center gap-6">
-        <Title>Default buttons</Title>
+        <Title>Contained buttons</Title>
         <div className="flex flex-wrap items-center gap-8">
           <Button
             onClick={() => console.log("You clicked default")}
@@ -32,20 +32,6 @@ const Home: NextPage = () => {
             onClick={() => console.log("You clicked danger")}
           >
             Danger
-          </Button>
-          <Button
-            color="primary"
-            startIcon={<MdShoppingCartCheckout className="text-xl" />}
-            onClick={() => console.log("You clicked danger")}
-          >
-            Cart
-          </Button>
-          <Button
-            color="primary"
-            endIcon={<MdOutlineCalendarMonth className="text-xl" />}
-            onClick={() => console.log("You clicked danger")}
-          >
-            Schedule
           </Button>
         </div>
       </section>
@@ -140,6 +126,32 @@ const Home: NextPage = () => {
             onClick={() => console.log("You clicked secondary")}
           >
             Large
+          </Button>
+        </div>
+      </section>
+
+      <section className="flex flex-col items-center gap-6 ">
+        <Title>Icon buttons</Title>
+        <div className="flex flex-wrap items-center gap-8">
+          <Button
+            color="primary"
+            startIcon={<MdShoppingCartCheckout className="text-xl" />}
+            onClick={() => console.log("You clicked danger")}
+          >
+            Cart
+          </Button>
+          <Button
+            endIcon={<MdOutlineCalendarMonth className="text-xl" />}
+            onClick={() => console.log("You clicked danger")}
+          >
+            Schedule
+          </Button>
+          <Button
+            color="danger"
+            endIcon={<MdDeleteForever className="text-xl" />}
+            onClick={() => console.log("You clicked danger")}
+          >
+            Delete
           </Button>
         </div>
       </section>
