@@ -99,6 +99,8 @@ $ yarn storybook
 - [Steps to replicate a design with only HTML and CSS](https://devchallenges-blogs.web.app/how-to-replicate-design/)
 - [Node.js](https://nodejs.org/)
 - [Marked - a markdown parser](https://github.com/chjj/marked)
+- [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+- [daily.dev](https://daily.dev/)
 
 ## Contact
 
