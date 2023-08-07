@@ -1,15 +1,14 @@
 import type { NextPage } from "next"
-import Button, { ColorProps } from "@/components/button"
-import { useTheme } from "styled-components"
+import Button from "@/components/button"
 import { MdShoppingCartCheckout, MdOutlineCalendarMonth } from "react-icons/md";
+import Title from "@/components/title";
 
 const Home: NextPage = () => {
-  const theme = useTheme()
 
   return (
     <main className="grid gap-20 items-top px-24 py-10">
       <section className="flex flex-col items-center gap-6">
-        <h1 className="text-3xl text-gray-700 font-semibold">Default buttons</h1>
+        <Title>Default buttons</Title>
         <div className="flex flex-wrap items-center gap-8">
           <Button
             onClick={() => console.log("You clicked default")}
@@ -52,7 +51,7 @@ const Home: NextPage = () => {
       </section>
 
       <section className="flex flex-col items-center gap-6">
-        <h1 className="text-3xl text-gray-700 font-semibold">Outline buttons</h1>
+        <Title>Outline buttons</Title>
         <div className="flex flex-wrap items-center gap-8">
           <Button
             variant="outline"
@@ -86,7 +85,7 @@ const Home: NextPage = () => {
       </section>
 
       <section className="flex flex-col items-center gap-6 ">
-        <h1 className="text-3xl text-gray-700 font-semibold">Text buttons</h1>
+        <Title>Text buttons</Title>
         <div className="flex flex-wrap items-center gap-8">
           <Button
             variant="text"
@@ -119,25 +118,25 @@ const Home: NextPage = () => {
       </section>
 
       <section className="flex flex-col items-center gap-6 ">
-        <h1 className="text-3xl text-gray-700 font-semibold">Button sizes</h1>
+        <Title>Button sizes</Title>
         <div className="flex flex-wrap items-center gap-8">
           <Button
-            size="sm"
             color="primary"
+            size="sm"
             onClick={() => console.log("You clicked default")}
           >
             Small
           </Button>
           <Button
-            size="md"
             color="primary"
+            size="md"
             onClick={() => console.log("You clicked primary")}
           >
             Medium
           </Button>
           <Button
-            size="lg"
             color="primary"
+            size="lg"
             onClick={() => console.log("You clicked secondary")}
           >
             Large
@@ -148,7 +147,7 @@ const Home: NextPage = () => {
 
       <section className="flex flex-col items-center gap-6 ">
 
-        <h1 className="text-3xl text-gray-700 font-semibold">Disable shadow</h1>
+        <Title>Disable shadow</Title>
         <div className="flex flex-wrap items-center gap-8">
           <Button
             disableShadow
@@ -157,22 +156,22 @@ const Home: NextPage = () => {
             Default
           </Button>
           <Button
-            disableShadow
             color="primary"
+            disableShadow
             onClick={() => console.log("You clicked primary")}
           >
             Primary
           </Button>
           <Button
-            disableShadow
             color="secondary"
+            disableShadow
             onClick={() => console.log("You clicked secondary")}
           >
             Secondary
           </Button>
           <Button
-            disableShadow
             color="danger"
+            disableShadow
             onClick={() => console.log("You clicked danger")}
           >
             Danger
@@ -182,29 +181,29 @@ const Home: NextPage = () => {
 
 
       <section className="flex flex-col items-center gap-6">
-        <h1 className="text-3xl text-gray-700 font-semibold">Disabled buttons</h1>
+        <Title>Disabled buttons</Title>
         <div className="flex flex-wrap items-center gap-8">
           <Button
-            disabled
             color="default"
+            disabled
           >
             Default
           </Button>
           <Button
-            disabled
             color="primary"
+            disabled
           >
             Primary
           </Button>
           <Button
-            disabled
             color="secondary"
+            disabled
           >
             Secondary
           </Button>
           <Button
-            disabled
             color="danger"
+            disabled
           >
             Danger
           </Button>
@@ -219,22 +218,22 @@ const Home: NextPage = () => {
           </Button>
           <Button
             variant="outline"
-            disabled
             color="primary"
+            disabled
           >
             Primary
           </Button>
           <Button
             variant="outline"
-            disabled
             color="secondary"
+            disabled
           >
             Secondary
           </Button>
           <Button
             variant="outline"
-            disabled
             color="danger"
+            disabled
           >
             Danger
           </Button>
@@ -250,30 +249,29 @@ const Home: NextPage = () => {
           </Button>
           <Button
             variant="text"
-            disabled
             color="primary"
+            disabled
           >
             Text
           </Button>
           <Button
             variant="text"
-            disabled
             color="secondary"
+            disabled
           >
             Text
           </Button>
           <Button
             variant="text"
-            disabled
             color="danger"
+            disabled
           >
             Text
           </Button>
         </div>
-        
+
       </section>
 
-      
 
     </main>
   )

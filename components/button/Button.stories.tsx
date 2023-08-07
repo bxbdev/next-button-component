@@ -6,6 +6,7 @@ import "../../styles/globals.css"
 import Button from './';
 import { ButtonProps, VariantProps, SizeProps }  from './Button';
 import { ColorProps } from '../../types/StyleType';
+import { hexToRgba } from '../../utils/colorUtils';
 
 const theme: DefaultTheme = {
   name: "default",
@@ -13,8 +14,8 @@ const theme: DefaultTheme = {
   borderRadius: "6px",
   borderWidth: "2px",
   borderStyle: "solid",
-  bodyColor: ColorProps.white,
-  textColor: ColorProps.black,
+  bodyColor: "#EFF7F6",
+  textColor: "black",
   size: {
     sm: "6px 12px",
     md: "8px 16px",
@@ -22,40 +23,40 @@ const theme: DefaultTheme = {
   },
   palette: {
     common: {
-      black: ColorProps.black,
-      white: ColorProps.white,
+      black: "black",
+      white: "white",
     },
     default: {
-      main: ColorProps.gray,
-      contrastText: ColorProps.deepGray,
-      hoverColor: ColorProps.lightGray,
-      shadowColor: ColorProps.jetGray,
-      outlineColorHover: ColorProps.jetGray,
-      disabled: ColorProps.cadetGray,
+      main: "#E0E0E0",
+      contrastText: "#3F3F3F",
+      colorHover: "#AEAEAE",
+      shadowColor: hexToRgba("333", .4),
+      outlineHover: hexToRgba("333", .1),
+      disabled: "#9E9E9E",
     },
     primary: {
-      main: ColorProps.blue,
-      contrastText: ColorProps.white,
-      hoverColor: ColorProps.persianBlue,
-      shadowColor: ColorProps.persianBlue,
-      outlineColorHover: ColorProps.persianBlue,
-      disabled: ColorProps.persianBlue,
+      main: "#3D5AFE",
+      contrastText: "white",
+      colorHover: "#0039CB",
+      shadowColor: hexToRgba("#0039CB", .4),
+      outlineHover: hexToRgba("#0039CB", .1),
+      disabled: hexToRgba("#0039CB", .4),
     },
     secondary: {
-      main: ColorProps.paynesGray,
-      contrastText: ColorProps.white,
-      hoverColor:  ColorProps.gunmetal,
-      shadowColor: ColorProps.paynesGray,
-      outlineColorHover: ColorProps.paynesGray,
-      disabled: ColorProps.paynesGray,
+      main: "#455A64",
+      contrastText: "white",
+      colorHover:  "#1C313A",
+      shadowColor: hexToRgba("#455A64", .4),
+      outlineHover: hexToRgba("#455A64", .1),
+      disabled: hexToRgba("#455A64", .4),
     },
     danger: {
-      main: ColorProps.red,
-      contrastText: ColorProps.white,
-      hoverColor: ColorProps.pennRed,
-      shadowColor: ColorProps.persianRed,
-      outlineColorHover: ColorProps.persianRed,
-      disabled: ColorProps.persianRed,
+      main: "#e5383b",
+      contrastText: "white",
+      colorHover: "#9A0007",
+      shadowColor: hexToRgba("#D32F2F", .4),
+      outlineHover: hexToRgba("#D32F2F", .1),
+      disabled: hexToRgba("#D32F2F", .4),
     },
   },
 };

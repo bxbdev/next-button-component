@@ -1,5 +1,6 @@
-import { DefaultTheme } from "styled-components";
-import { ColorProps } from "@/types/StyleType";
+import { DefaultTheme } from "styled-components"
+import { ColorProps } from "@/types/StyleType"
+import { hexToRgba } from "@/utils/colorUtils"
 
 export const defaultTheme: DefaultTheme = {
   name: "default",
@@ -22,34 +23,34 @@ export const defaultTheme: DefaultTheme = {
     default: {
       main: ColorProps.gray,
       contrastText: ColorProps.deepGray,
-      hoverColor: ColorProps.lightGray,
-      shadowColor: ColorProps.jetGray,
-      outlineColorHover: ColorProps.jetGray,
+      colorHover: ColorProps.lightGray,
+      shadowColor: hexToRgba(ColorProps.jetGray, .4),
+      outlineHover: hexToRgba(ColorProps.jetGray, .1),
       disabled: ColorProps.cadetGray,
     },
     primary: {
       main: ColorProps.blue,
       contrastText: ColorProps.white,
-      hoverColor: ColorProps.persianBlue,
-      shadowColor: ColorProps.persianBlue,
-      outlineColorHover: ColorProps.persianBlue,
-      disabled: ColorProps.persianBlue,
+      colorHover: ColorProps.persianBlue,
+      shadowColor: hexToRgba(ColorProps.persianBlue, .4),
+      outlineHover: hexToRgba(ColorProps.persianBlue, .1),
+      disabled: hexToRgba(ColorProps.persianBlue, .4),
     },
     secondary: {
       main: ColorProps.paynesGray,
       contrastText: ColorProps.white,
-      hoverColor:  ColorProps.gunmetal,
-      shadowColor: ColorProps.paynesGray,
-      outlineColorHover: ColorProps.paynesGray,
-      disabled: ColorProps.paynesGray,
+      colorHover:  ColorProps.gunmetal,
+      shadowColor: hexToRgba(ColorProps.paynesGray, .4),
+      outlineHover: hexToRgba(ColorProps.paynesGray, .1),
+      disabled: hexToRgba(ColorProps.paynesGray, .4),
     },
     danger: {
       main: ColorProps.red,
       contrastText: ColorProps.white,
-      hoverColor: ColorProps.pennRed,
-      shadowColor: ColorProps.persianRed,
-      outlineColorHover: ColorProps.persianRed,
-      disabled: ColorProps.persianRed,
+      colorHover: ColorProps.pennRed,
+      shadowColor: hexToRgba(ColorProps.persianRed, .4),
+      outlineHover: hexToRgba(ColorProps.persianRed, .1),
+      disabled: hexToRgba(ColorProps.persianRed, .4),
     },
   },
 };

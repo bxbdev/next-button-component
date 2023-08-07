@@ -1,5 +1,5 @@
 import styled, { DefaultTheme } from "styled-components"
-import { ReactNode } from "react";
+import { ReactNode } from "react"
 
 export enum SizeProps {
     sm = "sm",
@@ -51,7 +51,7 @@ export type ButtonProps = {
     disableShadow?: boolean;
     startIcon?: ReactNode;
     endIcon?: ReactNode;
-    theme: DefaultTheme;
+    theme?: DefaultTheme;
     onClick?: () => void;
 }
 
@@ -59,20 +59,32 @@ export const StyledButton = styled.button<ButtonProps>`
     display: flex;
     align-items: center;
     gap: 4px;
-    font-size: ${ ({ theme }: ButtonProps) => theme.fontSize || "14px" };
+    font-size: ${ ({ theme }: ButtonProps) => theme?.fontSize || "14px" };
     color: ${ ({ variant, color, theme }: ButtonProps) => {
         switch (variant) {
             case VariantProps.outline:
             case VariantProps.text:
-                return `rgb(${
-                    color ? (
-                        color !== "default"
-                        ? theme.palette[color].main
-                        : theme.palette[color].contrastText
-                    )
-                    : theme.palette.default.contrastText})`
+                switch (color) {
+                    case "primary":
+                        return theme?.palette.primary.main
+                    case "secondary":
+                        return theme?.palette.secondary.main
+                    case "danger":
+                        return theme?.palette.danger.main
+                    default:
+                        return theme?.palette.default.contrastText
+                }
             default:
-                return `rgb(${color ? theme.palette[color].contrastText : theme.palette.default.contrastText})`
+                switch (color) {
+                    case "primary":
+                        return theme?.palette.primary.contrastText
+                    case "secondary":
+                        return theme?.palette.secondary.contrastText
+                    case "danger":
+                        return theme?.palette.danger.contrastText
+                    default:
+                        return theme?.palette.default.contrastText
+                }
     }} };
     background: ${ ({ variant, color, theme }: ButtonProps) => {
         switch (variant) {
@@ -81,26 +93,40 @@ export const StyledButton = styled.button<ButtonProps>`
             case VariantProps.link:
                 return "transparent"
             default:
-                return `rgb(${color ? theme.palette[color].main : theme.palette.default.main})`
-        }
-    } };
+                switch (color) {
+                    case "primary":
+                        return theme?.palette.primary.main
+                    case "secondary":
+                        return theme?.palette.secondary.main
+                    case "danger":
+                        return theme?.palette.danger.main
+                    default:
+                        return theme?.palette.default.main
+                }
+    }} };
     border: ${ ({ variant, color, theme }: ButtonProps) => {
         switch (variant) {
             case VariantProps.outline:
-                return `${theme.borderWidth} ${theme.borderStyle} rgb(${
-                    color ? (
-                        color !== "default"
-                        ? theme.palette[color].main
-                        : theme.palette[color].contrastText
-                    )
-                    : theme.palette.default.contrastText })`;
+                return `${theme?.borderWidth} ${theme?.borderStyle} ${(() => {
+                    switch (color) {
+                        case "primary":
+                            return theme?.palette.primary.main
+                        case "secondary":
+                            return theme?.palette.secondary.main
+                        case "danger":
+                            return theme?.palette.danger.main
+                        default:
+                            return theme?.palette.default.contrastText
+                    }
+                })()
+            }`;
             default:
                 return "none";
         }
     }};
     text-align: center;
     text-decoration: none;
-    border-radius: ${ ({ theme }: ButtonProps) => theme.borderRadius || "6px" };
+    border-radius: ${ ({ theme }: ButtonProps) => theme?.borderRadius || "6px" };
     box-shadow: ${ ({
         variant,
         color,
@@ -109,13 +135,31 @@ export const StyledButton = styled.button<ButtonProps>`
     }: ButtonProps) =>
         variant || disableShadow
         ? "none"
-        : `0px 2px 5px 0px rgba(${
-            color
-            ? theme.palette[color].shadowColor
-            : theme.palette.default.shadowColor
-        } , 0.4)`
+        : `0px 2px 5px 0px ${
+            (() => {
+                switch (color) {
+                    case "primary":
+                        return theme?.palette.primary.shadowColor
+                    case "secondary":
+                        return theme?.palette.secondary.shadowColor
+                    case "danger":
+                        return theme?.palette.danger.shadowColor
+                    default:
+                        return theme?.palette.default.shadowColor
+                }
+            })()
+        }`
     };
-    padding: ${ ({ size, theme }: ButtonProps) => theme.size[size] || "8px 16px"};
+    padding: ${ ({ size, theme }: ButtonProps) => {
+        switch (size) {
+            case "sm":
+                return theme?.size.sm
+            case "lg":
+                return theme?.size.lg
+            default:
+                return theme?.size.md
+        }
+    }};
     cursor: pointer;
     transition: 0.5s all ease-in-out;
 
@@ -124,58 +168,83 @@ export const StyledButton = styled.button<ButtonProps>`
             switch (variant) {
                 case VariantProps.outline:
                 case VariantProps.text:
-                    return `rgba(${
-                        color
-                        ? theme.palette[color].outlineColorHover
-                        : theme.palette.default.outlineColorHover
-                    }, 0.1)`;
+                    switch (color) {
+                        case "primary":
+                            return theme?.palette.primary.outlineHover
+                        case "secondary":
+                            return theme?.palette.secondary.outlineHover
+                        case "danger":
+                            return theme?.palette.danger.outlineHover
+                        default:
+                            return theme?.palette.default.outlineHover
+                    }
                 default:
-                    return `rgb(${
-                        color
-                        ? theme.palette[color].hoverColor
-                        : theme.palette.default.hoverColor
-                    })`
+                    switch (color) {
+                        case "primary":
+                            return theme?.palette.primary.colorHover
+                        case "secondary":
+                            return theme?.palette.secondary.colorHover
+                        case "danger":
+                            return theme?.palette.danger.colorHover
+                        default:
+                            return theme?.palette.default.colorHover
+                    }
             }
-        }
-        };
+        }};
     }
 
     &:disabled, &:disabled:hover {
         pointer-events: none;
-        color: ${ ({variant, color, theme, disabled }: ButtonProps) => {
-            if (!color) return `rgb(${theme.palette.default.disabled})`
+        color: ${ ({variant, color, theme }: ButtonProps) => {
+            if (color === "default") return theme?.palette.default.disabled
             switch (variant) {
                 case VariantProps.outline:
-                    return color
-                            ? `rgba(${theme.palette[color].disabled}, 0.5)`
-                            : `rgb(${theme.palette.default.main})`
                 case VariantProps.text:
-                    return color
-                            ? `rgba(${theme.palette[color].disabled}, 0.5)`
-                            : `rgb(${theme.palette.default.disabled})`
+                    switch (color) {
+                        case "primary":
+                            return theme?.palette.primary.disabled
+                        case "secondary":
+                            return theme?.palette.secondary.disabled
+                        case "danger":
+                            return theme?.palette.danger.disabled
+                        default:
+                            return theme?.palette.default.disabled
+                    }
                 default:
-                    return color === "default" && `rgb(${theme.palette.default.disabled})`
+                    return
             }
         }};
         border-color: ${ ({ variant, color, theme }: ButtonProps) => {
+            if (color === "default") return theme?.palette.default.main
             switch (variant) {
                 case VariantProps.outline:
-                    return `rgba(${
-                        color
-                        ? theme.palette[color].disabled
-                        : theme.palette.default.disabled
-                    }, 0.4)`
+                    switch (color) {
+                        case "primary":
+                            return theme?.palette.primary.disabled
+                        case "secondary":
+                            return theme?.palette.secondary.disabled
+                        case "danger":
+                            return theme?.palette.danger.disabled
+                        default:
+                            return theme?.palette.default.main
+                    }
                 default:
                     return
             }
         }};
         background-color: ${ ({ variant, color, theme}: ButtonProps) => {
-                if (variant === VariantProps.outline || variant === VariantProps.text) return "transparent"
-                return color
-                        ? color === "default" ? `rgba(${theme.palette[color].main})` : `rgba(${theme.palette[color].disabled}, 0.5)`
-                        : `rgba(${theme.palette.default.main}, 0.5)`
-                }
-        };
+            if (variant === VariantProps.outline || variant === VariantProps.text) return "transparent"
+            switch (color) {
+                case "primary":
+                    return theme?.palette.primary.disabled
+                case "secondary":
+                    return theme?.palette.secondary.disabled
+                case "danger":
+                    return theme?.palette.danger.disabled
+                default:
+                    return theme?.palette.default.main
+            }
+        }};
         box-shadow: none;
     }
 `

@@ -1,17 +1,33 @@
-import type { AppProps } from "next/app";
+import React, { ReactElement, ReactNode } from 'react'
+import type { AppProps } from "next/app"
+import { NextPage } from 'next'
 import 'tailwindcss/tailwind.css'
-import { ThemeProvider } from "styled-components"
-import { ColorProps } from "@/types/StyleType"
-import { defaultTheme } from "@/components/themes/defaultTheme";
+import { ThemeProvider, useTheme } from "styled-components"
+import { defaultTheme, darkTheme } from "@/components/themes"
+import { GlobalStyle } from "@/components/themes/globalStyle"
 
-function App({ Component, pageProps }: AppProps) {
+
+export type NextPageWithProps<P = unknown, IP = P> = NextPage<P, IP> & {
+  getLayout?: (page: ReactElement) => ReactNode;
+};
+
+type AppWithProps = AppProps & {
+  Component: NextPageWithProps;
+};
+
+function App({ Component, pageProps }: AppWithProps) {
+
+  const getLayout = Component.getLayout || ((page: ReactElement) => page)
 
   const theme = defaultTheme
 
   return (
-    <ThemeProvider theme={theme}>
-      <Component {...pageProps} />
-    </ThemeProvider>
+    <React.Fragment>
+      <ThemeProvider theme={theme}>
+        <GlobalStyle />
+        {getLayout(<Component {...pageProps} />)}
+      </ThemeProvider>
+    </React.Fragment>
   );
 }
 export default App;
