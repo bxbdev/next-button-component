@@ -93,7 +93,7 @@ const meta: Meta<typeof Button> = {
         SizeProps.lg,
       ]
     },
-    variant: {
+    $variant: {
       control: {
         type: "radio",
       },
@@ -113,6 +113,9 @@ const meta: Meta<typeof Button> = {
         "secondary",
         "danger",
       ]
+    },
+    $disableShadow: {
+      type: "boolean"
     },
     disabled: {
       type: "boolean",
@@ -135,13 +138,13 @@ export const Playground: Story = {
 export const Variant: Story = {
   render: (args: ButtonProps) => (
     <div className="flex gap-2">
-      <Button variant="contained" {...args}>
+      <Button $variant="contained" {...args}>
         Contained
       </Button>
-      <Button variant="outline" {...args}>
+      <Button $variant="outline" {...args}>
         Outline
       </Button>
-      <Button variant="text" {...args}>
+      <Button $variant="text" {...args}>
         Text
       </Button>
     </div>
@@ -170,16 +173,16 @@ export const Color: Story = {
 export const Outline: Story = {
   render: (args: ButtonProps) => (
     <div className="flex gap-2">
-      <Button variant="outline" color="default" {...args}>
+      <Button $variant="outline" color="default" {...args}>
         {args.children}
       </Button>
-      <Button variant="outline" color="primary" {...args}>
+      <Button $variant="outline" color="primary" {...args}>
         {args.children}
       </Button>
-      <Button variant="outline" color="secondary" {...args}>
+      <Button $variant="outline" color="secondary" {...args}>
         {args.children}
       </Button>
-      <Button variant="outline" color="danger" {...args}>
+      <Button $variant="outline" color="danger" {...args}>
         {args.children}
       </Button>
     </div>
@@ -191,16 +194,16 @@ export const Outline: Story = {
 export const Text: Story = {
   render: (args: ButtonProps) => (
     <div className="flex gap-2">
-      <Button variant="text" color="default" {...args}>
+      <Button $variant="text" color="default" {...args}>
         Text
       </Button>
-      <Button variant="text" color="primary" {...args}>
+      <Button $variant="text" color="primary" {...args}>
         Text
       </Button>
-      <Button variant="text" color="secondary" {...args}>
+      <Button $variant="text" color="secondary" {...args}>
         Text
       </Button>
-      <Button variant="text" color="danger" {...args}>
+      <Button $variant="text" color="danger" {...args}>
         Text
       </Button>
     </div>
@@ -211,16 +214,16 @@ export const Text: Story = {
 export const ContainedDisabled: Story = {
   render: (args: ButtonProps) => (
     <div className="flex gap-2">
-      <Button disabled variant="contained" color="default" {...args}>
+      <Button disabled $variant="contained" color="default" {...args}>
         {args.children}
       </Button>
-      <Button disabled variant="contained" color="primary" {...args}>
+      <Button disabled $variant="contained" color="primary" {...args}>
         {args.children}
       </Button>
-      <Button disabled variant="contained" color="secondary" {...args}>
+      <Button disabled $variant="contained" color="secondary" {...args}>
         {args.children}
       </Button>
-      <Button disabled variant="contained" color="danger" {...args}>
+      <Button disabled $variant="contained" color="danger" {...args}>
         {args.children}
       </Button>
     </div>
@@ -230,16 +233,16 @@ export const ContainedDisabled: Story = {
 export const OutlineDisabled: Story = {
   render: (args: ButtonProps) => (
     <div className="flex gap-2">
-      <Button disabled variant="outline" color="default" {...args}>
+      <Button disabled $variant="outline" color="default" {...args}>
         {args.children}
       </Button>
-      <Button disabled variant="outline" color="primary" {...args}>
+      <Button disabled $variant="outline" color="primary" {...args}>
         {args.children}
       </Button>
-      <Button disabled variant="outline" color="secondary" {...args}>
+      <Button disabled $variant="outline" color="secondary" {...args}>
         {args.children}
       </Button>
-      <Button disabled variant="outline" color="danger" {...args}>
+      <Button disabled $variant="outline" color="danger" {...args}>
         {args.children}
       </Button>
     </div>
@@ -249,16 +252,16 @@ export const OutlineDisabled: Story = {
 export const TextDisabled: Story = {
   render: (args: ButtonProps) => (
     <div className="flex gap-2">
-      <Button disabled variant="text" color="default" {...args}>
+      <Button disabled $variant="text" color="default" {...args}>
         Text
       </Button>
-      <Button disabled variant="text" color="primary" {...args}>
+      <Button disabled $variant="text" color="primary" {...args}>
         Text
       </Button>
-      <Button disabled variant="text" color="secondary" {...args}>
+      <Button disabled $variant="text" color="secondary" {...args}>
         Text
       </Button>
-      <Button disabled variant="text" color="danger" {...args}>
+      <Button disabled $variant="text" color="danger" {...args}>
         Text
       </Button>
     </div>
@@ -284,7 +287,7 @@ export const Icon: Story = {
         {args.children}
       </Button>
       <Button
-        variant='outline'
+        $variant='outline'
         startIcon={<MdOutlineCalendarMonth />}
         color="secondary"
         {...args}
@@ -292,7 +295,7 @@ export const Icon: Story = {
         {args.children}
       </Button>
       <Button
-        variant='text'
+        $variant='text'
         endIcon={<MdWarning />}
         color="danger"
         {...args}

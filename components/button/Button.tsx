@@ -40,15 +40,15 @@ export enum ColorProps {
     danger = "danger"
 }
 
-export type ButtonProps = {
+export type ButtonProps<T> = {
     children?: ReactNode;
     className?: string;
-    variant? : VariantProps | string;
+    $variant? : VariantProps | string;
     size?: string;
     color?:  ColorProps | string;
     disabled?: boolean;
     type?: string;
-    disableShadow?: boolean;
+    $disableShadow?: boolean;
     startIcon?: ReactNode;
     endIcon?: ReactNode;
     theme?: DefaultTheme;
@@ -57,10 +57,11 @@ export type ButtonProps = {
 
 export const StyledButton = styled.button<ButtonProps>`
     display: flex;
+    align-items: center;
     gap: 4px;
     font-size: ${ ({ theme }: ButtonProps) => theme?.fontSize || "14px" };
-    color: ${ ({ variant, color, theme }: ButtonProps) => {
-        switch (variant) {
+    color: ${ ({ $variant, color, theme }: ButtonProps) => {
+        switch ($variant) {
             case VariantProps.outline:
             case VariantProps.text:
                 switch (color) {
@@ -85,8 +86,8 @@ export const StyledButton = styled.button<ButtonProps>`
                         return theme?.palette.default.contrastText
                 }
     }} };
-    background: ${ ({ variant, color, theme }: ButtonProps) => {
-        switch (variant) {
+    background: ${ ({ $variant, color, theme }: ButtonProps) => {
+        switch ($variant) {
             case VariantProps.outline:
             case VariantProps.text:
             case VariantProps.link:
@@ -103,8 +104,8 @@ export const StyledButton = styled.button<ButtonProps>`
                         return theme?.palette.default.main
                 }
     }} };
-    border: ${ ({ variant, color, theme }: ButtonProps) => {
-        switch (variant) {
+    border: ${ ({ $variant, color, theme }: ButtonProps) => {
+        switch ($variant) {
             case VariantProps.outline:
                 return `${theme?.borderWidth} ${theme?.borderStyle} ${(() => {
                     switch (color) {
@@ -127,12 +128,12 @@ export const StyledButton = styled.button<ButtonProps>`
     text-decoration: none;
     border-radius: ${ ({ theme }: ButtonProps) => theme?.borderRadius || "6px" };
     box-shadow: ${ ({
-        variant,
+        $variant,
         color,
-        disableShadow,
+        $disableShadow,
         theme
     }: ButtonProps) =>
-        variant || disableShadow
+        $variant || $disableShadow
         ? "none"
         : `0px 2px 5px 0px ${
             (() => {
@@ -163,8 +164,8 @@ export const StyledButton = styled.button<ButtonProps>`
     transition: 0.5s all ease-in-out;
 
     &:hover, &:focus {
-        background-color: ${( { variant, color, theme }: ButtonProps) => {
-            switch (variant) {
+        background-color: ${( { $variant, color, theme }: ButtonProps) => {
+            switch ($variant) {
                 case VariantProps.outline:
                 case VariantProps.text:
                     switch (color) {
@@ -194,9 +195,9 @@ export const StyledButton = styled.button<ButtonProps>`
 
     &:disabled, &:disabled:hover {
         pointer-events: none;
-        color: ${ ({variant, color, theme }: ButtonProps) => {
+        color: ${ ({$variant, color, theme }: ButtonProps) => {
             if (color === "default") return theme?.palette.default.disabled
-            switch (variant) {
+            switch ($variant) {
                 case VariantProps.outline:
                 case VariantProps.text:
                     switch (color) {
@@ -213,9 +214,9 @@ export const StyledButton = styled.button<ButtonProps>`
                     return
             }
         }};
-        border-color: ${ ({ variant, color, theme }: ButtonProps) => {
+        border-color: ${ ({ $variant, color, theme }: ButtonProps) => {
             if (color === "default") return theme?.palette.default.main
-            switch (variant) {
+            switch ($variant) {
                 case VariantProps.outline:
                     switch (color) {
                         case "primary":
@@ -231,8 +232,8 @@ export const StyledButton = styled.button<ButtonProps>`
                     return
             }
         }};
-        background-color: ${ ({ variant, color, theme}: ButtonProps) => {
-            if (variant === VariantProps.outline || variant === VariantProps.text) return "transparent"
+        background-color: ${ ({ $variant, color, theme}: ButtonProps) => {
+            if ($variant === VariantProps.outline || $variant === VariantProps.text) return "transparent"
             switch (color) {
                 case "primary":
                     return theme?.palette.primary.disabled

@@ -10,7 +10,8 @@ import {
 export { type ButtonProps, VariantProps, ColorProps, TypeProps, SizeProps }
 
 const Button = (props: ButtonProps) => {
-    return <StyledButton {...props}>{props.startIcon}{props.children}{props.endIcon}</StyledButton>
+    const { startIcon, endIcon, children, ...rest } = props
+    return <StyledButton {...rest}>{startIcon}{children}{endIcon}</StyledButton>
 }
 
 export default Button
