@@ -39,72 +39,72 @@ const Home: NextPage = () => {
           </div>
         </section>
 
-        <section className="flex flex-col items-center gap-6">
-          <Title>Outline buttons</Title>
-          <div className="flex flex-wrap items-center gap-8">
-            <Button
-              $variant="outline"
-              color="default"
-              onClick={() => console.log("You clicked default")}
-            >
-              Default
-            </Button>
-            <Button
-              $variant="outline"
-              color="primary"
-              onClick={() => console.log("You clicked primary")}
-            >
-              Primary
-            </Button>
-            <Button
-              $variant="outline"
-              color="secondary"
-              onClick={() => console.log("You clicked secondary")}
-            >
-              Secondary
-            </Button>
-            <Button
-              $variant="outline"
-              color="danger"
-              onClick={() => console.log("You clicked danger")}
-            >
-              Danger
-            </Button>
-          </div>
-        </section>
+      <section className="flex flex-col items-center gap-6">
+        <Title>Outline buttons</Title>
+        <div className="flex flex-wrap items-center gap-8">
+          <Button
+            variant="outline"
+            color="default"
+            onClick={() => console.log("You clicked default")}
+          >
+            Default
+          </Button>
+          <Button
+            variant="outline"
+            color="primary"
+            onClick={() => console.log("You clicked primary")}
+          >
+            Primary
+          </Button>
+          <Button
+            variant="outline"
+            color="secondary"
+            onClick={() => console.log("You clicked secondary")}
+          >
+            Secondary
+          </Button>
+          <Button
+            variant="outline"
+            color="danger"
+            onClick={() => console.log("You clicked danger")}
+          >
+            Danger
+          </Button>
+        </div>
+      </section>
 
-        <section className="flex flex-col items-center gap-6 ">
-          <Title>Text buttons</Title>
-          <div className="flex flex-wrap items-center gap-8">
-            <Button
-              $variant="text"
-              onClick={() => console.log("You clicked default")}
-            >
-              Default
-            </Button>
-            <Button
-              $variant="text"
-              color="primary"
-              onClick={() => console.log("You clicked primary")}
-            >
-              Primary
-            </Button>
-            <Button
-              $variant="text"
-              color="secondary"
-              onClick={() => console.log("You clicked secondary")}
-            >
-              Secondary
-            </Button>
-            <Button
-              $variant="text"
-              color="danger"
-              onClick={() => console.log("You clicked danger")}
-            >
-              Danger
-            </Button>
-          </div>
-        </section>
+      <section className="flex flex-col items-center gap-6 ">
+        <Title>Text buttons</Title>
+        <div className="flex flex-wrap items-center gap-8">
+          <Button
+            variant="text"
+            onClick={() => console.log("You clicked default")}
+          >
+            Default
+          </Button>
+          <Button
+            variant="text"
+            color="primary"
+            onClick={() => console.log("You clicked primary")}
+          >
+            Primary
+          </Button>
+          <Button
+            variant="text"
+            color="secondary"
+            onClick={() => console.log("You clicked secondary")}
+          >
+            Secondary
+          </Button>
+          <Button
+            variant="text"
+            color="danger"
+            onClick={() => console.log("You clicked danger")}
+          >
+            Danger
+          </Button>
+        </div>
+      </section>
 
         <section className="flex flex-col items-center gap-6 ">
           <Title>Button sizes</Title>
@@ -162,37 +162,37 @@ const Home: NextPage = () => {
 
         <section className="flex flex-col items-center gap-6 ">
 
-          <Title>Disable shadow</Title>
-          <div className="flex flex-wrap items-center gap-8">
-            <Button
-              $disableShadow
-              onClick={() => console.log("You clicked default")}
-            >
-              Default
-            </Button>
-            <Button
-              color="primary"
-              $disableShadow
-              onClick={() => console.log("You clicked primary")}
-            >
-              Primary
-            </Button>
-            <Button
-              color="secondary"
-              $disableShadow
-              onClick={() => console.log("You clicked secondary")}
-            >
-              Secondary
-            </Button>
-            <Button
-              color="danger"
-              $disableShadow
-              onClick={() => console.log("You clicked danger")}
-            >
-              Danger
-            </Button>
-          </div>
-        </section>
+        <Title>Disable shadow</Title>
+        <div className="flex flex-wrap items-center gap-8">
+          <Button
+            disableShadow
+            onClick={() => console.log("You clicked default")}
+          >
+            Default
+          </Button>
+          <Button
+            color="primary"
+            disableShadow
+            onClick={() => console.log("You clicked primary")}
+          >
+            Primary
+          </Button>
+          <Button
+            color="secondary"
+            disableShadow
+            onClick={() => console.log("You clicked secondary")}
+          >
+            Secondary
+          </Button>
+          <Button
+            color="danger"
+            disableShadow
+            onClick={() => console.log("You clicked danger")}
+          >
+            Danger
+          </Button>
+        </div>
+      </section>
 
 
         <section className="flex flex-col items-center gap-6">
@@ -224,66 +224,66 @@ const Home: NextPage = () => {
             </Button>
           </div>
 
-          <div className="flex flex-wrap items-center gap-8">
-            <Button
-              $variant="outline"
-              disabled
-            >
-              Default
-            </Button>
-            <Button
-              $variant="outline"
-              color="primary"
-              disabled
-            >
-              Primary
-            </Button>
-            <Button
-              $variant="outline"
-              color="secondary"
-              disabled
-            >
-              Secondary
-            </Button>
-            <Button
-              $variant="outline"
-              color="danger"
-              disabled
-            >
-              Danger
-            </Button>
-          </div>
+        <div className="flex flex-wrap items-center gap-8">
+          <Button
+            variant="outline"
+            disabled
+          >
+            Default
+          </Button>
+          <Button
+            variant="outline"
+            color="primary"
+            disabled
+          >
+            Primary
+          </Button>
+          <Button
+            variant="outline"
+            color="secondary"
+            disabled
+          >
+            Secondary
+          </Button>
+          <Button
+            variant="outline"
+            color="danger"
+            disabled
+          >
+            Danger
+          </Button>
+        </div>
 
 
-          <div className="flex flex-wrap items-center gap-8">
-            <Button
-              $variant="text"
-              disabled
-            >
-              Text
-            </Button>
-            <Button
-              $variant="text"
-              color="primary"
-              disabled
-            >
-              Text
-            </Button>
-            <Button
-              $variant="text"
-              color="secondary"
-              disabled
-            >
-              Text
-            </Button>
-            <Button
-              $variant="text"
-              color="danger"
-              disabled
-            >
-              Text
-            </Button>
-          </div>
+        <div className="flex flex-wrap items-center gap-8">
+          <Button
+            variant="text"
+            disabled
+          >
+            Text
+          </Button>
+          <Button
+            variant="text"
+            color="primary"
+            disabled
+          >
+            Text
+          </Button>
+          <Button
+            variant="text"
+            color="secondary"
+            disabled
+          >
+            Text
+          </Button>
+          <Button
+            variant="text"
+            color="danger"
+            disabled
+          >
+            Text
+          </Button>
+        </div>
 
         </section>
 
