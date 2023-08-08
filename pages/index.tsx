@@ -40,28 +40,28 @@ const Home: NextPage = () => {
         <Title>Outline buttons</Title>
         <div className="flex flex-wrap items-center gap-8">
           <Button
-            variant="outline"
+            $variant="outline"
             color="default"
             onClick={() => console.log("You clicked default")}
           >
             Default
           </Button>
           <Button
-            variant="outline"
+            $variant="outline"
             color="primary"
             onClick={() => console.log("You clicked primary")}
           >
             Primary
           </Button>
           <Button
-            variant="outline"
+            $variant="outline"
             color="secondary"
             onClick={() => console.log("You clicked secondary")}
           >
             Secondary
           </Button>
           <Button
-            variant="outline"
+            $variant="outline"
             color="danger"
             onClick={() => console.log("You clicked danger")}
           >
@@ -74,27 +74,27 @@ const Home: NextPage = () => {
         <Title>Text buttons</Title>
         <div className="flex flex-wrap items-center gap-8">
           <Button
-            variant="text"
+            $variant="text"
             onClick={() => console.log("You clicked default")}
           >
             Default
           </Button>
           <Button
-            variant="text"
+            $variant="text"
             color="primary"
             onClick={() => console.log("You clicked primary")}
           >
             Primary
           </Button>
           <Button
-            variant="text"
+            $variant="text"
             color="secondary"
             onClick={() => console.log("You clicked secondary")}
           >
             Secondary
           </Button>
           <Button
-            variant="text"
+            $variant="text"
             color="danger"
             onClick={() => console.log("You clicked danger")}
           >
@@ -162,28 +162,28 @@ const Home: NextPage = () => {
         <Title>Disable shadow</Title>
         <div className="flex flex-wrap items-center gap-8">
           <Button
-            disableShadow
+            $disableShadow
             onClick={() => console.log("You clicked default")}
           >
             Default
           </Button>
           <Button
             color="primary"
-            disableShadow
+            $disableShadow
             onClick={() => console.log("You clicked primary")}
           >
             Primary
           </Button>
           <Button
             color="secondary"
-            disableShadow
+            $disableShadow
             onClick={() => console.log("You clicked secondary")}
           >
             Secondary
           </Button>
           <Button
             color="danger"
-            disableShadow
+            $disableShadow
             onClick={() => console.log("You clicked danger")}
           >
             Danger
@@ -223,27 +223,27 @@ const Home: NextPage = () => {
 
         <div className="flex flex-wrap items-center gap-8">
           <Button
-            variant="outline"
+            $variant="outline"
             disabled
           >
             Default
           </Button>
           <Button
-            variant="outline"
+            $variant="outline"
             color="primary"
             disabled
           >
             Primary
           </Button>
           <Button
-            variant="outline"
+            $variant="outline"
             color="secondary"
             disabled
           >
             Secondary
           </Button>
           <Button
-            variant="outline"
+            $variant="outline"
             color="danger"
             disabled
           >
@@ -254,27 +254,27 @@ const Home: NextPage = () => {
 
         <div className="flex flex-wrap items-center gap-8">
           <Button
-            variant="text"
+            $variant="text"
             disabled
           >
             Text
           </Button>
           <Button
-            variant="text"
+            $variant="text"
             color="primary"
             disabled
           >
             Text
           </Button>
           <Button
-            variant="text"
+            $variant="text"
             color="secondary"
             disabled
           >
             Text
           </Button>
           <Button
-            variant="text"
+            $variant="text"
             color="danger"
             disabled
           >

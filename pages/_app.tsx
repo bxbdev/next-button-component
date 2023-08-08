@@ -5,7 +5,7 @@ import 'tailwindcss/tailwind.css'
 import { ThemeProvider, useTheme } from "styled-components"
 import { defaultTheme, darkTheme } from "@/components/themes"
 import { GlobalStyle } from "@/components/themes/globalStyle"
-
+import AppLayout from '@/app/layout'
 
 export type NextPageWithProps<P = unknown, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -17,7 +17,7 @@ type AppWithProps = AppProps & {
 
 function App({ Component, pageProps }: AppWithProps) {
 
-  const getLayout = Component.getLayout || ((page: ReactElement) => page)
+  const getLayout = Component.getLayout ?? ((page: ReactElement) =>  page)
 
   const theme = defaultTheme
 
