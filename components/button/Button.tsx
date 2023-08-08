@@ -40,7 +40,7 @@ export enum ColorProps {
     danger = "danger"
 }
 
-export type ButtonProps<T> = {
+export type ButtonProps = {
     children?: ReactNode;
     className?: string;
     $variant? : VariantProps | string;
