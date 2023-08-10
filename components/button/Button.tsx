@@ -45,7 +45,7 @@ export type ButtonProps = {
     children?: ReactNode;
     className?: string;
     $variant? : VariantType | string;
-    size?: SizeType;
+    size?: SizeType | string;
     color?:  ColorType | string;
     disabled?: boolean;
     type?: string;
