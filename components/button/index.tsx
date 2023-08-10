@@ -1,13 +1,13 @@
 import {
     StyledButton,
-    ColorProps,
+    ColorType,
     ButtonProps,
-    VariantProps,
-    TypeProps,
-    SizeProps
+    VariantType,
+    Type,
+    SizeType
 }  from './Button'
 
-export { type ButtonProps, VariantProps, ColorProps, TypeProps, SizeProps }
+export { type ButtonProps, VariantType, ColorType, Type, SizeType }
 
 const Button = (props: ButtonProps) => {
     const { startIcon, endIcon, children, ...rest } = props

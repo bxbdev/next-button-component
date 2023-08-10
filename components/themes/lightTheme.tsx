@@ -1,7 +1,8 @@
+import { DefaultTheme } from "styled-components"
 import { ColorProps } from "@/types/StyleType"
 import { hexToRgba } from "@/utils/colorUtils"
 
-export const lightTheme = {
+export const lightTheme: DefaultTheme = {
   name: "light",
   fontSize: "14px",
   borderRadius: "6px",

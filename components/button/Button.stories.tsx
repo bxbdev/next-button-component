@@ -3,15 +3,15 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { MdShoppingCartCheckout, MdOutlineCalendarMonth, MdFavoriteBorder, MdWarning } from "react-icons/md"
 import "../../styles/globals.css"
 import Button from './'
-import { ButtonProps, VariantProps, SizeProps }  from './Button'
+import { ButtonProps, VariantType, SizeType }  from './Button'
 import { ThemeProvider, DefaultTheme } from 'styled-components'
-import { lightTheme, darkTheme } from '../themes'
+import { lightTheme, darkTheme, type ThemeType } from '../themes'
 import React from 'react'
 
 const withColorScheme = (Story: any, context: any) => {
   let { scheme } = context.globals
 
-  const Flex = ({ theme } : { theme: DefaultTheme ) => {
+  const Flex: React.FC<{ theme: ThemeType }> = ({ theme }: { theme: ThemeType } ) => {
     return (
       <ThemeProvider theme={ theme }>
         <div style={{
@@ -72,9 +72,9 @@ const meta: Meta<typeof Button> = {
         type: "radio",
       },
       options: [
-        SizeProps.sm,
-        SizeProps.md,
-        SizeProps.lg,
+        SizeType.sm,
+        SizeType.md,
+        SizeType.lg,
       ]
     },
     $variant: {
@@ -82,9 +82,9 @@ const meta: Meta<typeof Button> = {
         type: "radio",
       },
       options: [
-        VariantProps.contained,
-        VariantProps.text,
-        VariantProps.outline,
+        VariantType.contained,
+        VariantType.text,
+        VariantType.outline,
       ],
     },
     color: {

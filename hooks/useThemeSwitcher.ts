@@ -1,11 +1,11 @@
 import { useState, useEffect, useCallback } from 'react'
 import { lightTheme, darkTheme } from '@/components/themes'
-import { ThemeType } from '@/components/themes'
+import type { ThemeType } from '@/components/themes'
 import { DefaultTheme } from 'styled-components';
 
 
 const useThemeSwitcher = () => {
-    const [theme, setTheme] = useState<ThemeType>(lightTheme)
+    const [theme, setTheme] = useState(lightTheme)
 
     const handleThemeChange = useCallback( (themeName: string ) => {
         const newTheme = themeName === 'light' ? lightTheme : darkTheme

@@ -52,29 +52,28 @@ export type ButtonProps = {
     $disableShadow?: boolean;
     startIcon?: ReactNode;
     endIcon?: ReactNode;
-    theme?: DefaultTheme;
+    theme?: ThemeType;
     $active?: boolean;
     onClick?: () => void;
 }
-
 
 export const StyledButton = styled.button<ButtonProps>`
     display: flex;
     align-items: center;
     gap: 4px;
     font-size: ${ ({ theme }: ButtonProps) => theme?.fontSize || "14px" };
-    color: ${ ({ $variant = "contained", $active, color = "default", theme }: ButtonProps) => {
-        if ($variant === "text") return theme?.palette.default.text?.contrastText
-        if ($variant === "outline") return theme?.palette[color].outline?.contrastText
+    color: ${ ({ $variant = VariantType.contained, $active, color = ColorType.default, theme }: ButtonProps) => {
+        if ($variant === VariantType.text) return theme?.palette.default.text?.contrastText
+        if ($variant === VariantType.outline) return theme?.palette[color].outline?.contrastText
         if ($active) return theme?.palette[color].active.contrastText
         return theme?.palette[color].contrastText
     } };
-    background-color: ${ ({ $variant = "contained", $active, color = "default", theme }: ButtonProps) => {
-        if ($variant !== "contained") return "transparent"
+    background-color: ${ ({ $variant = VariantType.contained, $active, color = ColorType.default, theme }: ButtonProps) => {
+        if ($variant !== VariantType.contained) return "transparent"
         if ($active) return theme?.palette[color].active.main
         return theme?.palette[color].main
     }};
-    border: ${ ({ $variant = "contained", color = "default", theme }: ButtonProps) => {
+    border: ${ ({ $variant = VariantType.contained, color = ColorType.default, theme }: ButtonProps) => {
         if ($variant === VariantType.outline) {
             return `
                 ${theme?.borderWidth}
@@ -87,41 +86,41 @@ export const StyledButton = styled.button<ButtonProps>`
     text-decoration: none;
     border-radius: ${ ({ theme }: ButtonProps) => theme?.borderRadius || "6px" };
     box-shadow: ${ ({
-        $variant = "contained",
-        color = "default",
+        $variant = VariantType.contained,
+        color = ColorType.default,
         $disableShadow,
         theme
     }: ButtonProps) =>
-        $variant !== "contained" || $disableShadow
+        $variant !== VariantType.contained || $disableShadow
         ? "none"
         : `0px 2px 5px 0px ${theme?.palette[color].shadowColor
         }`
     };
-    padding: ${ ({ size = "md", theme }: ButtonProps) => {
+    padding: ${ ({ size = SizeType.md, theme }: ButtonProps) => {
         return theme?.size[size]
     }};
     cursor: pointer;
     transition: 0.5s all ease-in-out;
 
     &:hover {
-        background-color: ${( { $variant = "contained", color = "default", theme }: ButtonProps) => {
-            if ($variant === "contained") return theme?.palette[color].hover.main
-            if ($variant === "text" || $variant === "outline") return theme?.palette[color].hover[$variant].main
+        background-color: ${( { $variant = VariantType.contained, color = ColorType.default, theme }: ButtonProps) => {
+            if ($variant === VariantType.contained) return theme?.palette[color].hover.main
+            if ($variant === VariantType.text || VariantType.outline) return theme?.palette[color].hover[$variant].main
         }};
     }
 
     &:disabled, &:disabled:hover {
         pointer-events: none;
-        color: ${ ({$variant="contained", color="default", theme }: ButtonProps) => {
-            if ($variant !== "contained")
+        color: ${ ({$variant = VariantType.contained, color = ColorType.default, theme }: ButtonProps) => {
+            if ($variant !== VariantType.contained)
                 return theme?.palette[color].disabled[$variant].contrastText
             return theme?.palette[color].disabled.contrastText
         }};
-        border-color: ${ ({ $variant, color="default", theme }: ButtonProps) => {
+        border-color: ${ ({ color = ColorType.default, theme }: ButtonProps) => {
             return theme?.palette[color].disabled.borderColor
         }};
-        background-color: ${ ({ $variant="contained", color="default", theme}: ButtonProps) => {
-            if ($variant === "contained") return theme?.palette[color].disabled.main
+        background-color: ${ ({ $variant = VariantType.contained, color = ColorType.default, theme}: ButtonProps) => {
+            if ($variant === VariantType.contained) return theme?.palette[color].disabled.main
         }};
         box-shadow: none;
     }
