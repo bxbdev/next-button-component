@@ -63,7 +63,7 @@ export const StyledButton = styled.button<ButtonProps>`
     gap: 4px;
     font-size: ${ ({ theme }: ButtonProps) => theme?.fontSize || "14px" };
     color: ${ ({ $variant = VariantType.contained, $active, color = ColorType.default, theme }: ButtonProps) => {
-        if ($variant === VariantType.text) return theme?.palette.default.text?.contrastText
+        if ($variant === VariantType.text) return theme?.palette[color].text?.contrastText
         if ($variant === VariantType.outline) return theme?.palette[color].outline?.contrastText
         if ($active) return theme?.palette[color].active.contrastText
         return theme?.palette[color].contrastText
