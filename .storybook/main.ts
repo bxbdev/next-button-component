@@ -1,6 +1,6 @@
 import type { StorybookConfig } from "@storybook/nextjs";
 
-import { join, dirname } from "path";
+import { join, dirname } from "path"
 
 /**
  * This function is used to resolve the absolute path of a package.
@@ -21,7 +21,7 @@ const config: StorybookConfig = {
     getAbsolutePath("@storybook/addon-onboarding"),
     getAbsolutePath("@storybook/addon-interactions"),
     {
-      name: '@storybook/addon-styling',
+      name: getAbsolutePath('@storybook/addon-styling'),
       options: {
         postCss: {
           implementation: require.resolve('postcss'),

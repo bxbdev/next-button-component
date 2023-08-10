@@ -1,13 +1,14 @@
 import styled, { DefaultTheme } from "styled-components"
 import { ReactNode } from "react"
+import type { ThemeType } from "../themes";
 
-export enum SizeProps {
+export enum SizeType {
     sm = "sm",
     md = "md",
     lg = "lg",
 }
 
-export enum BorderStyleProps {
+export enum BorderStyleType {
     solid = "solid",
     dashed = "dashed",
     double = "double",
@@ -19,21 +20,21 @@ export enum BorderStyleProps {
     inset = "inset"
 }
 
-export enum VariantProps {
+export enum VariantType {
     text = "text",
     outline = "outline",
     link = "link",
     contained = "contained",
 }
 
-export enum TypeProps {
+export enum Type {
     button = "button",
     image = "image",
     reset = "reset",
     submit = "submit"
 }
 
-export enum ColorProps {
+export enum ColorType {
     default = "default",
     primary = "primary",
     secondary = "secondary",
@@ -43,207 +44,84 @@ export enum ColorProps {
 export type ButtonProps = {
     children?: ReactNode;
     className?: string;
-    $variant? : VariantProps | string;
-    size?: string;
-    color?:  ColorProps | string;
+    $variant? : VariantType | string;
+    size?: SizeType;
+    color?:  ColorType | string;
     disabled?: boolean;
     type?: string;
     $disableShadow?: boolean;
     startIcon?: ReactNode;
     endIcon?: ReactNode;
     theme?: DefaultTheme;
+    $active?: boolean;
     onClick?: () => void;
 }
+
 
 export const StyledButton = styled.button<ButtonProps>`
     display: flex;
     align-items: center;
     gap: 4px;
     font-size: ${ ({ theme }: ButtonProps) => theme?.fontSize || "14px" };
-    color: ${ ({ $variant, color, theme }: ButtonProps) => {
-        switch ($variant) {
-            case VariantProps.outline:
-            case VariantProps.text:
-                switch (color) {
-                    case "primary":
-                        return theme?.palette.primary.main
-                    case "secondary":
-                        return theme?.palette.secondary.main
-                    case "danger":
-                        return theme?.palette.danger.main
-                    default:
-                        return theme?.palette.default.contrastText
-                }
-            default:
-                switch (color) {
-                    case "primary":
-                        return theme?.palette.primary.contrastText
-                    case "secondary":
-                        return theme?.palette.secondary.contrastText
-                    case "danger":
-                        return theme?.palette.danger.contrastText
-                    default:
-                        return theme?.palette.default.contrastText
-                }
-    }} };
-    background: ${ ({ $variant, color, theme }: ButtonProps) => {
-        switch ($variant) {
-            case VariantProps.outline:
-            case VariantProps.text:
-            case VariantProps.link:
-                return "transparent"
-            default:
-                switch (color) {
-                    case "primary":
-                        return theme?.palette.primary.main
-                    case "secondary":
-                        return theme?.palette.secondary.main
-                    case "danger":
-                        return theme?.palette.danger.main
-                    default:
-                        return theme?.palette.default.main
-                }
-    }} };
-    border: ${ ({ $variant, color, theme }: ButtonProps) => {
-        switch ($variant) {
-            case VariantProps.outline:
-                return `${theme?.borderWidth} ${theme?.borderStyle} ${(() => {
-                    switch (color) {
-                        case "primary":
-                            return theme?.palette.primary.main
-                        case "secondary":
-                            return theme?.palette.secondary.main
-                        case "danger":
-                            return theme?.palette.danger.main
-                        default:
-                            return theme?.palette.default.contrastText
-                    }
-                })()
-            }`;
-            default:
-                return "none";
+    color: ${ ({ $variant = "contained", $active, color = "default", theme }: ButtonProps) => {
+        if ($variant === "text") return theme?.palette.default.text?.contrastText
+        if ($variant === "outline") return theme?.palette[color].outline?.contrastText
+        if ($active) return theme?.palette[color].active.contrastText
+        return theme?.palette[color].contrastText
+    } };
+    background-color: ${ ({ $variant = "contained", $active, color = "default", theme }: ButtonProps) => {
+        if ($variant !== "contained") return "transparent"
+        if ($active) return theme?.palette[color].active.main
+        return theme?.palette[color].main
+    }};
+    border: ${ ({ $variant = "contained", color = "default", theme }: ButtonProps) => {
+        if ($variant === VariantType.outline) {
+            return `
+                ${theme?.borderWidth}
+                ${theme?.borderStyle}
+                ${theme?.palette[color].outline?.borderColor}`
         }
+        return "none"
     }};
     text-align: center;
     text-decoration: none;
     border-radius: ${ ({ theme }: ButtonProps) => theme?.borderRadius || "6px" };
     box-shadow: ${ ({
-        $variant,
-        color,
+        $variant = "contained",
+        color = "default",
         $disableShadow,
         theme
     }: ButtonProps) =>
-        $variant || $disableShadow
+        $variant !== "contained" || $disableShadow
         ? "none"
-        : `0px 2px 5px 0px ${
-            (() => {
-                switch (color) {
-                    case "primary":
-                        return theme?.palette.primary.shadowColor
-                    case "secondary":
-                        return theme?.palette.secondary.shadowColor
-                    case "danger":
-                        return theme?.palette.danger.shadowColor
-                    default:
-                        return theme?.palette.default.shadowColor
-                }
-            })()
+        : `0px 2px 5px 0px ${theme?.palette[color].shadowColor
         }`
     };
-    padding: ${ ({ size, theme }: ButtonProps) => {
-        switch (size) {
-            case "sm":
-                return theme?.size.sm
-            case "lg":
-                return theme?.size.lg
-            default:
-                return theme?.size.md
-        }
+    padding: ${ ({ size = "md", theme }: ButtonProps) => {
+        return theme?.size[size]
     }};
     cursor: pointer;
     transition: 0.5s all ease-in-out;
 
-    &:hover, &:focus {
-        background-color: ${( { $variant, color, theme }: ButtonProps) => {
-            switch ($variant) {
-                case VariantProps.outline:
-                case VariantProps.text:
-                    switch (color) {
-                        case "primary":
-                            return theme?.palette.primary.outlineHover
-                        case "secondary":
-                            return theme?.palette.secondary.outlineHover
-                        case "danger":
-                            return theme?.palette.danger.outlineHover
-                        default:
-                            return theme?.palette.default.outlineHover
-                    }
-                default:
-                    switch (color) {
-                        case "primary":
-                            return theme?.palette.primary.colorHover
-                        case "secondary":
-                            return theme?.palette.secondary.colorHover
-                        case "danger":
-                            return theme?.palette.danger.colorHover
-                        default:
-                            return theme?.palette.default.colorHover
-                    }
-            }
+    &:hover {
+        background-color: ${( { $variant = "contained", color = "default", theme }: ButtonProps) => {
+            if ($variant === "contained") return theme?.palette[color].hover.main
+            if ($variant === "text" || $variant === "outline") return theme?.palette[color].hover[$variant].main
         }};
     }
 
     &:disabled, &:disabled:hover {
         pointer-events: none;
-        color: ${ ({$variant, color, theme }: ButtonProps) => {
-            if (color === "default") return theme?.palette.default.disabled
-            switch ($variant) {
-                case VariantProps.outline:
-                case VariantProps.text:
-                    switch (color) {
-                        case "primary":
-                            return theme?.palette.primary.disabled
-                        case "secondary":
-                            return theme?.palette.secondary.disabled
-                        case "danger":
-                            return theme?.palette.danger.disabled
-                        default:
-                            return theme?.palette.default.disabled
-                    }
-                default:
-                    return
-            }
+        color: ${ ({$variant="contained", color="default", theme }: ButtonProps) => {
+            if ($variant !== "contained")
+                return theme?.palette[color].disabled[$variant].contrastText
+            return theme?.palette[color].disabled.contrastText
         }};
-        border-color: ${ ({ $variant, color, theme }: ButtonProps) => {
-            if (color === "default") return theme?.palette.default.main
-            switch ($variant) {
-                case VariantProps.outline:
-                    switch (color) {
-                        case "primary":
-                            return theme?.palette.primary.disabled
-                        case "secondary":
-                            return theme?.palette.secondary.disabled
-                        case "danger":
-                            return theme?.palette.danger.disabled
-                        default:
-                            return theme?.palette.default.main
-                    }
-                default:
-                    return
-            }
+        border-color: ${ ({ $variant, color="default", theme }: ButtonProps) => {
+            return theme?.palette[color].disabled.borderColor
         }};
-        background-color: ${ ({ $variant, color, theme}: ButtonProps) => {
-            if ($variant === VariantProps.outline || $variant === VariantProps.text) return "transparent"
-            switch (color) {
-                case "primary":
-                    return theme?.palette.primary.disabled
-                case "secondary":
-                    return theme?.palette.secondary.disabled
-                case "danger":
-                    return theme?.palette.danger.disabled
-                default:
-                    return theme?.palette.default.main
-            }
+        background-color: ${ ({ $variant="contained", color="default", theme}: ButtonProps) => {
+            if ($variant === "contained") return theme?.palette[color].disabled.main
         }};
         box-shadow: none;
     }

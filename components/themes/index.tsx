@@ -1,4 +1,8 @@
-import { defaultTheme } from "./defaultTheme"
+import { lightTheme } from "./lightTheme"
 import { darkTheme } from "./darkTheme"
 
-export { defaultTheme, darkTheme }
+export type ThemeType = typeof lightTheme
+const theme = lightTheme
+
+export { lightTheme, darkTheme }
+export default theme

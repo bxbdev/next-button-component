@@ -1,65 +1,54 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { DefaultTheme } from "styled-components";
-import { MdShoppingCartCheckout, MdOutlineCalendarMonth, MdFavoriteBorder, MdWarning } from "react-icons/md";
-
+import isChromatic from 'chromatic/isChromatic'
+import type { Meta, StoryObj } from '@storybook/react'
+import { MdShoppingCartCheckout, MdOutlineCalendarMonth, MdFavoriteBorder, MdWarning } from "react-icons/md"
 import "../../styles/globals.css"
-import Button from './';
-import { ButtonProps, VariantProps, SizeProps }  from './Button';
-import { ColorProps } from '../../types/StyleType';
-import { hexToRgba } from '../../utils/colorUtils';
+import Button from './'
+import { ButtonProps, VariantProps, SizeProps }  from './Button'
+import { ThemeProvider, DefaultTheme } from 'styled-components'
+import { lightTheme, darkTheme } from '../themes'
+import React from 'react'
 
-const theme: DefaultTheme = {
-  name: "default",
-  fontSize: "14px",
-  borderRadius: "6px",
-  borderWidth: "2px",
-  borderStyle: "solid",
-  bodyColor: "#EFF7F6",
-  textColor: "black",
-  size: {
-    sm: "6px 12px",
-    md: "8px 16px",
-    lg: "11px 22px",
-  },
-  palette: {
-    common: {
-      black: "black",
-      white: "white",
-    },
-    default: {
-      main: "#E0E0E0",
-      contrastText: "#3F3F3F",
-      colorHover: "#AEAEAE",
-      shadowColor: hexToRgba("333", .4),
-      outlineHover: hexToRgba("333", .1),
-      disabled: "#9E9E9E",
-    },
-    primary: {
-      main: "#3D5AFE",
-      contrastText: "white",
-      colorHover: "#0039CB",
-      shadowColor: hexToRgba("#0039CB", .4),
-      outlineHover: hexToRgba("#0039CB", .1),
-      disabled: hexToRgba("#0039CB", .4),
-    },
-    secondary: {
-      main: "#455A64",
-      contrastText: "white",
-      colorHover:  "#1C313A",
-      shadowColor: hexToRgba("#455A64", .4),
-      outlineHover: hexToRgba("#455A64", .1),
-      disabled: hexToRgba("#455A64", .4),
-    },
-    danger: {
-      main: "#e5383b",
-      contrastText: "white",
-      colorHover: "#9A0007",
-      shadowColor: hexToRgba("#D32F2F", .4),
-      outlineHover: hexToRgba("#D32F2F", .1),
-      disabled: hexToRgba("#D32F2F", .4),
-    },
-  },
-};
+const withColorScheme = (Story: any, context: any) => {
+  let { scheme } = context.globals
+
+  const Flex = ({ theme } : { theme: DefaultTheme ) => {
+    return (
+      <ThemeProvider theme={ theme }>
+        <div style={{
+          display: "flex",
+          justifyContent: "center",
+          padding: "4rem 0 4rem",
+          backgroundColor: theme.name === "dark" ? "#000000" : "#eff7f6"
+        }}>
+          <Story />
+        </div>
+      </ThemeProvider>
+    )
+  }
+
+  if (isChromatic()) {
+    scheme = "both"
+  }
+
+  if (scheme === 'light') {
+    return (
+        <Flex theme={lightTheme} />
+    )
+  }
+
+  if (scheme === 'dark') {
+    return (
+      <Flex theme={darkTheme} />
+    )
+  }
+
+  return (
+    <>
+      <Flex theme={lightTheme} />
+      <Flex theme={darkTheme} />
+    </>
+  )
+}
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta: Meta<typeof Button> = {
@@ -67,22 +56,17 @@ const meta: Meta<typeof Button> = {
   component: Button,
   tags: ["autodocs"],
   decorators: [
-    (Story) => (
-      <div className="flex justify-center">
-        <Story />
-      </div>
-    ),
+    withColorScheme,
+    // (Story) => (
+    //   <div className="flex justify-center">
+    //     <Story />
+    //   </div>
+    // ),
   ],
   args: {
     children: "Button",
-    theme,
   },
   argTypes: {
-    theme: {
-      control: {
-        type: "object",
-      }
-    },
     size: {
       control: {
         type: "radio",
@@ -133,6 +117,16 @@ type Story = StoryObj<typeof Button>;
 // More on writing stories with args: https://storybook.js.org/docs/react/writing-stories/args
 export const Playground: Story = {
   render: (args: ButtonProps) => <Button {...args}>{args.children}</Button>,
+};
+
+export const Active: Story = {
+  render: (args: ButtonProps) => (
+    <div className="flex gap-2">
+      <Button $variant="contained" $active color="default" {...args}>
+        {args.children}
+      </Button>
+    </div>
+  ),
 };
 
 export const Variant: Story = {
@@ -267,6 +261,7 @@ export const TextDisabled: Story = {
     </div>
   ),
 };
+
 
 
 export const Icon: Story = {

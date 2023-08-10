@@ -1,17 +1,19 @@
-import React, { ReactElement } from 'react'
-import { ThemeProvider as StyledThemeProvider } from 'styled-components'
-import { defaultTheme, darkTheme } from './themes'
-
+import { ReactNode } from 'react'
+import { ThemeProvider as StyledThemeProvider, DefaultTheme } from 'styled-components'
+import ThemeSwitcher from './ThemeSwitcher'
+import useThemeSwitcher from '@/hooks/useThemeSwitcher'
+import { GlobalStyle } from '@/components/themes/globalStyle'
 type ThemeProviderProps = {
-    children: React.ReactNode | ReactElement
-    themeMode: string
+    children: ReactNode
 }
 
-const ThemeProvider = ({ children, themeMode} : ThemeProviderProps ) => {
-    const theme = themeMode == 'dark' ? darkTheme : defaultTheme
+const ThemeProvider = ({ children }: ThemeProviderProps ) => {
+    const [ theme, handleThemeChange ] = useThemeSwitcher()
 
     return (
         <StyledThemeProvider theme={theme}>
+            <GlobalStyle />
+            <ThemeSwitcher name={theme.name} onThemeChange={handleThemeChange} />
             {children}
         </StyledThemeProvider>
     )

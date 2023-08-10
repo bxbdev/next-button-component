@@ -5960,6 +5960,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"chromatic@npm:^6.21.0":
+  version: 6.21.0
+  resolution: "chromatic@npm:6.21.0"
+  bin:
+    chroma: dist/bin.js
+    chromatic: dist/bin.js
+    chromatic-cli: dist/bin.js
+  checksum: f30903455790099566c8701b8e4c9419cab288b598b6cd28f34e457ff9879cdc31e4d34b377ba962b014ac6b52d17c506d044cf5cb0b2031340f6068d350a139
+  languageName: node
+  linkType: hard
+
 "chrome-trace-event@npm:^1.0.2":
   version: 1.0.3
   resolution: "chrome-trace-event@npm:1.0.3"
@@ -7290,6 +7301,17 @@ __metadata:
     typescript:
       optional: true
   checksum: 633eccf920d94a1248c089ec08c52245d863b1b45d68be04deff93c0a0d60373c96610d69d005909b2c9beb81b0af7a12a777d03277cd4db60233e99ac8ef281
+  languageName: node
+  linkType: hard
+
+"eslint-config-prettier@npm:^9.0.0":
+  version: 9.0.0
+  resolution: "eslint-config-prettier@npm:9.0.0"
+  peerDependencies:
+    eslint: ">=7.0.0"
+  bin:
+    eslint-config-prettier: bin/cli.js
+  checksum: 362e991b6cb343f79362bada2d97c202e5303e6865888918a7445c555fb75e4c078b01278e90be98aa98ae22f8597d8e93d48314bec6824f540f7efcab3ce451
   languageName: node
   linkType: hard
 
@@ -12616,8 +12638,10 @@ __metadata:
     "@types/react-dom": 18.2.7
     "@types/styled-components": ^5.1.26
     autoprefixer: 10.4.14
+    chromatic: ^6.21.0
     eslint: 8.46.0
     eslint-config-next: 13.4.12
+    eslint-config-prettier: ^9.0.0
     eslint-plugin-storybook: ^0.6.13
     next: 13.4.12
     postcss: 8.4.27
