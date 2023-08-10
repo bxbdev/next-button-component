@@ -24,10 +24,8 @@ const ThemeProvider = ({ children }: ThemeProviderProps ) => {
     }, [])
 
 
-
-    return (
-        <StyledThemeProvider theme={theme}>
-            <GlobalStyle />
+    const ThemeSwitcher = () => {
+        return (
             <div className="flex justify-center gap-5 pt-10 px-10">
                 <Button
                     className={theme.name === 'light' ? 'active' : ''}
@@ -44,6 +42,14 @@ const ThemeProvider = ({ children }: ThemeProviderProps ) => {
                     <LuMoon className="text-2xl" />
                 </Button>
             </div>
+        )
+    }
+
+
+    return (
+        <StyledThemeProvider theme={theme}>
+            <GlobalStyle />
+            <ThemeSwitcher />
             {children}
         </StyledThemeProvider>
     )
