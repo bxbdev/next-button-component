@@ -37,8 +37,11 @@
 <!-- OVERVIEW -->
 
 ## Overview
+### Light Theme
+![image](https://github.com/bxbdev/next-button-component/assets/92566311/c65acedf-733a-449d-a799-ec94bb4a5c24)
 
-![screenshot](https://github.com/bxbdev/next-button-component/assets/92566311/077d5bdc-784c-4514-8fa6-3ff8b351c04e)
+### Dark theme
+![image](https://github.com/bxbdev/next-button-component/assets/92566311/02691043-8672-4716-a2fd-708d8e108355)
 
 ### [Demo](https://next-button-component-phi.vercel.app/)
 
@@ -76,7 +79,7 @@ This application/site was created as a submission to a [DevChallenges](https://d
 
 <!-- Example:  -->
 
-To clone and run this application, you'll need [Git](https://git-scm.com) and [Node.js](https://nodejs.org/en/download/) (which comes with [npm](http://npmjs.com)) installed on your computer. From your command line:
+To clone and run this application, you'll need [Git](https://git-scm.com), [Node.js](https://nodejs.org/en/download/) (which comes with [npm](http://npmjs.com)) and [yarn](https://yarnpkg.com/getting-started/install) installed on your computer. From your command line:
 
 ```bash
 # Clone this repository
